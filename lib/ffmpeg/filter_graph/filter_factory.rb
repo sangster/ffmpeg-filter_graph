@@ -30,6 +30,7 @@ module FFmpeg::FilterGraph
       self.class_name = class_name.to_s
       self.required = required || []
       self.optional = optional || []
+      self.editable = editable
       self.options_string = options_string
     end
 
@@ -41,10 +42,8 @@ module FFmpeg::FilterGraph
       # We need to make these local vars, to work in the Class.new block
       cn = class_name.to_s
 
-      mod.const_set(cn, create_class(cn, required, optional, options_string))
-
-      if editable
-      end
+      klass = create_class(cn, required, optional, editable, options_string)
+      mod.const_set(cn, klass)
 
       if helper_module
         helper_name = underscore(cn)
@@ -58,13 +57,15 @@ module FFmpeg::FilterGraph
 
     private
 
-    def create_class(cn, req, opt, opt_str)
+    def create_class(cn, req, opt, editable, opt_str)
       Class.new(Filter) do
         const_set('REQUIRED', req.freeze)
         const_set('OPTIONAL', opt.freeze)
 
         name(cn.downcase.to_sym)
-        options(*(const_get('REQUIRED') + const_get('OPTIONAL')))
+
+        option(*(const_get('REQUIRED') + const_get('OPTIONAL')))
+        option(:enable) if editable
 
         def initialize(args = {})
           self.class.const_get('REQUIRED').each do |o|

@@ -1,5 +1,5 @@
 module FFmpeg::FilterGraph
-  class FilterGraph
+  class Graph
     attr_accessor :chains, :outputs
 
     def initialize(chains: [], outputs: [])

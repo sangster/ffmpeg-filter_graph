@@ -1,24 +1,27 @@
 module FFmpeg::FilterGraph
   class Filter
-    # @param name [String] Sets the filter-name output by this filter
-    def self.name(name = nil)
-      if name.nil?
-        @name || fail('filter name not set')
-      else
-        @name = name
-      end
-    end
-
-    # @param opts [Array<String>] a list of valid options for this filter
-    def self.options(*opts)
-      @opts ||= []
-
-      if opts.any?
-        @opts.concat(opts)
-        attr_accessor *opts
+    class << self
+      # @param name [String] Sets the filter-name output by this filter
+      def name(name = nil)
+        if name.nil?
+          @name || fail('filter name not set')
+        else
+          @name = name
+        end
       end
 
-      @opts
+      # @param opts [Array<String>] a list of valid options for this filter
+      def option(*opts)
+        @opts ||= []
+
+        if opts.any?
+          @opts.concat(opts)
+          attr_accessor *opts
+        end
+
+        @opts
+      end
+      alias_method :options, :option
     end
 
     def to_s
@@ -32,7 +35,7 @@ module FFmpeg::FilterGraph
     # @return [String] A string concatenating the set options.
     # @note May be overridden by atypical filters
     def options_string
-      join_options(options)
+      join_options(*options.keys)
     end
 
     # Set all options to nil
