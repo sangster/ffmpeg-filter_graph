@@ -5,6 +5,12 @@ In a sense, this gem is really a "string factory", as it's main output is a
 single string you can pass as the argument to `ffmpeg`'s `-filter_complex`
 command-line argument.
 
+
+## Wishlist
+ - Track inpads and outpats, to ensure that outpads are used, and inpads exist.
+ - Support abbreviated option names
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -21,6 +27,7 @@ Or install it yourself as:
 
     $ gem install ffmpeg-filter_graph
 
+
 ## Usage
 
 ```ruby
@@ -34,7 +41,7 @@ class AddCommentary
 
   # Surround-sound prefixes
   Soundtrack = 'c'
-  CommentaryMix = 'r'
+  DuckedSoundtrack = 'r'
 
   # ffmpeg notation
   SoundtrackVideo = '1:v'
@@ -53,7 +60,7 @@ class AddCommentary
     spawn('ffmpeg', '-i', @media_container_path, '-i', @commentary_audio_path,
           '-filter_complex', filter_graph.to_s,
           '-map', SoundtrackVideo, '-map', SoundtrackAudio,
-          '-map', '[#{filter_graph.outputs.first}]',
+          '-map', "[#{filter_graph.outputs.first}]",
           @output_path)
   end
 
@@ -78,22 +85,22 @@ class AddCommentary
             side_chain_compress(attack: 50, release: 200),
             channel_split(channel_layout: '5.1')
           ],
-          outputs: surround_channels(CommentaryMix),
+          outputs: surround_channels(DuckedSoundtrack),
         ),
 
         # Merge commentary into rear channels
         chain(
-          inputs: surround_channels(CommentaryMix, :rl) << 'RLcom',
+          inputs: surround_channels(DuckedSoundtrack, :rl) << 'RLcom',
           filters: mono_mix,
           outputs: %w(RLmix)
         ),
         chain(
-          inputs: surround_channels(CommentaryMix, :rr) << 'RRcom',
+          inputs: surround_channels(DuckedSoundtrack, :rr) << 'RRcom',
           filters: mono_mix,
           outputs: %w(RRmix)
         ),
         chain(
-          inputs: surround_channels(CommentaryMix, :fl, :fr, :fc, :lfe) + %w(RLmix RRmix),
+          inputs: surround_channels(DuckedSoundtrack, :fl, :fr, :fc, :lfe) + %w(RLmix RRmix),
           filters: [a_merge(inputs: 6)]
         ),
       ]
@@ -108,6 +115,7 @@ class AddCommentary
 end
 ```
 
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
@@ -119,6 +127,7 @@ release a new version, update the version number in `version.rb`, and then run
 `bundle exec rake release`, which will create a git tag for the version, push
 git commits and tags, and push the `.gem` file to
 [rubygems.org](https://rubygems.org).
+
 
 ## Contributing
 
