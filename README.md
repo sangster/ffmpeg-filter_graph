@@ -1,5 +1,7 @@
 # Ffmpeg::FilterGraph
 
+**Warning**: This gem is alpha as it gets. Use at your own peril.
+
 The purpose of this gem is to help you create complex filter-graphs for FFmpeg.
 In a sense, this gem is really a "string factory", as it's main output is a
 single string you can pass as the argument to `ffmpeg`'s `-filter_complex`

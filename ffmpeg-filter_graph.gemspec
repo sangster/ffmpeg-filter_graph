@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['jon@ertt.ca']
 
   spec.summary       = %q{FFmpeg filter-graph generator}
-  spec.description   = %q{This gem generates complex filter-graph's for use with the ffmpeg application. ie: Values for the -filter_complex command-line option.}
+  spec.description   = %q{This gem generates complex filter-graphs for use with the ffmpeg application. ie: Values for the -filter_complex command-line option.}
   spec.homepage      = 'https://github.com/sangster/ffmpeg-filter_graph'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

@@ -14,11 +14,6 @@ module FFmpeg::FilterGraph
     # TODO ANoiseSrc
     # TODO Sine
   }.each do |class_name, opts|
-      FilterFactory.new(
-        class_name,
-        opts[:required],
-        opts[:optional],
-        &opts[:options_string]
-      ).create_class_in(self)
+    FilterFactory.create(class_name, opts).create_class_in(self)
   end
 end
