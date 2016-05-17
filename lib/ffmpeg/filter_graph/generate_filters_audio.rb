@@ -167,6 +167,7 @@ module FFmpeg::FilterGraph
       optional: [:f, :d]
     },
     Volume: {
+      editable: true,
       optional: [:volume, :precision, :replaygain, :replaygain_preamp, :eval]
     },
     VolumeDetect: {},
