@@ -12,6 +12,7 @@ require 'ffmpeg/filter_graph/filter_factory'
 require 'ffmpeg/filter_graph/chain'
 require 'ffmpeg/filter_graph/graph'
 
+# These files are responsible for creating the Filter sub-classes
 require 'ffmpeg/filter_graph/generators/audio'
 require 'ffmpeg/filter_graph/generators/audio_sink'
 require 'ffmpeg/filter_graph/generators/audio_src'
