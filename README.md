@@ -7,6 +7,9 @@ In a sense, this gem is really a "string factory", as it's main output is a
 single string you can pass as the argument to `ffmpeg`'s `-filter_complex`
 command-line argument.
 
+## Requirements
+ - `ffmpeg` v3.0
+
 
 ## Wishlist
  - Track inpads and outpats, to ensure that outpads are used, and inpads exist.
