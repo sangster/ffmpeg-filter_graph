@@ -145,7 +145,7 @@ module FFmpeg::FilterGraph
 
     Compand: {
       required: [:attack, :delay, :points],
-      optional: [:'soft-knee', :gain, :volume, :delay]
+      optional: [:softKnee, :gain, :volume, :delay]
     },
 
     CompensationDelay: {
