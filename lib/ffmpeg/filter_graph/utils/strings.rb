@@ -10,5 +10,12 @@ module FFmpeg::FilterGraph::Utils
       word.downcase!
       word
     end
+
+    def camel_case_to_snake_case(str)
+      [
+        str[0]&.downcase,
+        str[1..-1].gsub(/[A-Z]/) { |s| "-#{s.downcase}" }
+      ].join
+    end
   end
 end

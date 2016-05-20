@@ -1,5 +1,7 @@
 module FFmpeg::FilterGraph
   class Filter
+    include Utils::Strings
+
     class << self
       # @param name [String] Sets the filter-name output by this filter
       def name(name = nil)
@@ -62,8 +64,13 @@ module FFmpeg::FilterGraph
     # "k1=v1:k2=v2:k3=v3". Will return nil of there are no set values
     def join_options(*keys)
       opts = options
-      parts = keys.map { |k| "#{k}=#{opts[k]}" if opts[k] }.compact
+      parts = keys.map { |k| "#{translate_key(k)}=#{opts[k]}" if opts[k] }.compact
       parts.join(':') if parts.any?
+    end
+
+    # Remove leading underscores and convert to snake case
+    def translate_key(key)
+      camel_case_to_snake_case(key.to_s.gsub(/_*(.+)/, '\1'))
     end
   end
 end
