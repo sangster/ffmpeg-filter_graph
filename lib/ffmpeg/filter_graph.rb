@@ -12,6 +12,11 @@ require 'ffmpeg/filter_graph/filter_factory'
 require 'ffmpeg/filter_graph/chain'
 require 'ffmpeg/filter_graph/graph'
 
+require 'ffmpeg/filter_graph/pad'
+require 'ffmpeg/filter_graph/pads/inpad'
+require 'ffmpeg/filter_graph/pads/input'
+require 'ffmpeg/filter_graph/pads/outpad'
+
 # These files are responsible for creating the Filter sub-classes
 require 'ffmpeg/filter_graph/generators/audio'
 require 'ffmpeg/filter_graph/generators/audio_sink'

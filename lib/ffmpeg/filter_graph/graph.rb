@@ -4,19 +4,14 @@ module FFmpeg::FilterGraph
 
     def initialize(chains: [], outputs: [])
       self.chains = chains
-      self.outputs = outputs
-    end
-
-    def add_outputs(*pads)
-      self.outputs.push(*pads.map(&:to_s))
+      self.outputs = outputs.map { |pad| Pad.out(pad) }
     end
 
     def to_s
       [
         chains.map(&:to_s).join('; '),
-        outputs.map { |o| "[#{o}]" }.join(''),
+        outputs.map(&:to_s).join(''),
       ].join('')
     end
   end
 end
-

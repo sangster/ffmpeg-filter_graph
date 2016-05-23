@@ -1,4 +1,6 @@
-module FFmpeg::FilterGraph::Pads
-  class Inpad < Pad
+module FFmpeg::FilterGraph
+  module Pads
+    class Inpad < Pad
+    end
   end
 end
