@@ -70,7 +70,7 @@ module FFmpeg::FilterGraph
 
     # Remove leading underscores and convert to snake case
     def translate_key(key)
-      camel_case_to_snake_case(key.to_s.gsub(/_*(.+)/, '\1'))
+      underscore(key.to_s.gsub(/_*(.+)/, '\1'))
     end
   end
 end
