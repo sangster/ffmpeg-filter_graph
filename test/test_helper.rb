@@ -1,4 +1,5 @@
 require 'simplecov'
+SimpleCov.start { add_filter '/test/' } unless ENV.key?('SKIP_COVERAGE')
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 

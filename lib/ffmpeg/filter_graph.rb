@@ -3,9 +3,8 @@ module FFmpeg
   end
 end
 
+require 'ffmpeg/filter_graph/utils/helper'
 require 'ffmpeg/filter_graph/utils/strings'
-
-require 'ffmpeg/filter_graph/helper'
 
 require 'ffmpeg/filter_graph/filter'
 require 'ffmpeg/filter_graph/filter_factory'
@@ -14,7 +13,6 @@ require 'ffmpeg/filter_graph/graph'
 
 require 'ffmpeg/filter_graph/pad'
 require 'ffmpeg/filter_graph/pads/inpad'
-require 'ffmpeg/filter_graph/pads/input'
 require 'ffmpeg/filter_graph/pads/outpad'
 
 # These files are responsible for creating the Filter sub-classes

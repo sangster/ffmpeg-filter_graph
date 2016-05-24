@@ -3,13 +3,13 @@ module FFmpeg::FilterGraph
     attr_accessor :inputs, :outputs, :filters
 
     def initialize(inputs: [], outputs: [], filters: [])
-      self.inputs = inputs.map { |pad| Pad.in(pad) }
-      self.outputs = outputs.map { |pad| Pad.out(pad) }
+      self.inputs = Array(inputs).map { |pad| Pad.in(pad) }
+      self.outputs = Array(outputs).map { |pad| Pad.out(pad) }
       self.filters = Array(filters).flatten.compact
     end
 
     def to_s
-      "#{join(inputs)} #{join(filters, ', ')} #{join(outputs)}"
+      "#{join(inputs)} #{join(filters, ', ')} #{join(outputs)}".strip
     end
 
     private

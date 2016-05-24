@@ -5,7 +5,7 @@ require 'ffmpeg/filter_graph/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'ffmpeg-filter_graph'
-  spec.version       = Ffmpeg::FilterGraph::VERSION
+  spec.version       = FFmpeg::FilterGraph::VERSION
   spec.authors       = ['Jon Sangster']
   spec.email         = ['jon@ertt.ca']
 

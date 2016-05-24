@@ -26,7 +26,8 @@ module FFmpeg::FilterGraph
     #   default method of constructing the string of options in the filter's
     #   output.
     # @see Filter#options_string
-    def initialize(class_name, required, optional, editable, &options_string)
+    def initialize(class_name, required = nil, optional = nil, editable = false,
+                   &options_string)
       self.class_name = class_name.to_s
       self.required = required || []
       self.optional = optional || []
