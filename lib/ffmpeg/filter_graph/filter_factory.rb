@@ -39,7 +39,7 @@ module FFmpeg::FilterGraph
     # @param helper_module [Module] an optional module to create a helper-method
     # in. ex: if the filter class is named MyFilter, a method will be created
     # in the form of Helper.my_filter(*args); MyFilter.new(*args) end
-    def create_class_in(mod, helper_module: Helper)
+    def create_class_in(mod, helper_module: Utils::Helper)
       # We need to make these local vars, to work in the Class.new block
       cn = class_name.to_s
 
