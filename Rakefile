@@ -6,6 +6,11 @@ task :guard do
   sh 'bundle exec guard'
 end
 
+desc 'Generate documentation'
+task :doc do
+  sh 'yardoc'
+end
+
 Rake::TestTask.new(:test) do |t|
   t.libs << 'test'
   t.libs << 'lib'

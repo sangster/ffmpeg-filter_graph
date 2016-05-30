@@ -1,4 +1,7 @@
 module FFmpeg::FilterGraph
+  # A Chain represents a pipeline of {Filter}s, with zero or more inputs and
+  # outputs.
+  # @see https://ffmpeg.org/ffmpeg-filters.html#Filtergraph-syntax-1
   class Chain
     attr_accessor :inputs, :outputs, :filters
 

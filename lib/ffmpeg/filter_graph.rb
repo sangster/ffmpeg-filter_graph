@@ -1,4 +1,6 @@
 module FFmpeg
+  # A Filtergraph is comprised of a series of {Chain filter chains}, where each
+  # chain is comprised of a series of {Filter filters}.
   module FilterGraph
   end
 end

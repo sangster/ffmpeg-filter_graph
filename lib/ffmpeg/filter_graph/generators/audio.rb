@@ -61,6 +61,8 @@ module FFmpeg::FilterGraph
       optional: [:inputs]
     },
 
+    ANull: {},
+
     AMix: {
       optional: [:inputs, :duration, :dropout_transition]
     },
