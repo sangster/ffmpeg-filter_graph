@@ -1,7 +1,8 @@
 module FFmpeg::FilterGraph
   module Utils
     module Helper
-      CHANNELS = %w(FL FR FC LFE RL RR)
+      UnknownLayoutError = Class.new(StandardError)
+      CHANNELS = %w(FL FR FC LFE RL RR).freeze
 
       def graph(*args); Graph.new(*args) end
       def chain(*args); Chain.new(*args) end
@@ -25,8 +26,10 @@ module FFmpeg::FilterGraph
         when '3.1'    then 4
         when '2.1'    then 3
         when 'stereo' then 2
+        when '2'      then 2
         when 'mono'   then 1
-        else fail 'unknown layout'
+        when '1'      then 1
+        else raise UnknownLayoutError, Kernel.format('unknown layout %p', ch)
         end
       end
     end
